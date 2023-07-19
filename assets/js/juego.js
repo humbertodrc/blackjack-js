@@ -11,6 +11,10 @@ let deck = [];
 const types = ["C", "D", "H", "S"];
 const specials = ["A", "J", "Q", "K"];
 
+/**
+ * Esta funcion se encarga de crear el mazo de cartas
+ * tambien se encarga de barajarlo
+ */
 const createDeck = () => {
 
   for (let i = 2; i <= 10; i++) {
@@ -25,11 +29,33 @@ const createDeck = () => {
     }
   }
 
+  // Posible libreria para barajar
   // deck = _.shuffle(deck);
 
   deck = deck.sort(() => 0.5 - Math.random())
 
+  console.log(deck);
+
+  return deck;
+
+};
+
+/**
+ * Esta funcion se encarga de tomar una carta y eliminarla del mazo
+ * @returns carta
+ */
+const takeCard = () => {
+
+  if (deck.length === 0) {
+    throw "No hay cartas en el mazo";
+  }
+
+  let carta;
+
+  carta = deck.pop();
+
+  return carta;
 };
 
 createDeck();
-console.log(deck);
+takeCard();
