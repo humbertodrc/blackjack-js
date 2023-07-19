@@ -57,5 +57,18 @@ const takeCard = () => {
   return carta;
 };
 
+const cardValue = (card) => {
+
+  // Elimina el ultimo caracter de la carta, que es el tipo de carta
+  const value = card.substring(0, card.length - 1);
+
+  // Asigna puntos a la carta, si es A = 11, si es J, Q, K = 10 y si es un numero, el numero de la carta
+  return isNaN(value) ? (value === 'A' ? 11 : 10) : value * 1; 
+
+}
+
 createDeck();
-takeCard();
+const valor = cardValue(takeCard());
+console.log({valor});
+
+
