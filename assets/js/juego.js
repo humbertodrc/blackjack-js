@@ -6,10 +6,21 @@
  * 2H = 2 de Corazones
  * 2S = 2 de Espadas
  */
-
 let deck = [];
 const types = ["C", "D", "H", "S"];
 const specials = ["A", "J", "Q", "K"];
+
+// Puntos
+let playerPoints = 0;
+let computerPoints = 0;
+
+// Buttons HTML
+const btnRequestCard = document.querySelector("#btn-request-card");
+
+
+// Score HTML
+const playerScore = document.querySelector("small");
+const computerScore = document.querySelectorAll("small")[1];
 
 /**
  * Esta funcion se encarga de crear el mazo de cartas
@@ -34,8 +45,6 @@ const createDeck = () => {
 
   deck = deck.sort(() => 0.5 - Math.random())
 
-  console.log(deck);
-
   return deck;
 
 };
@@ -57,6 +66,12 @@ const takeCard = () => {
   return carta;
 };
 
+
+/**
+ * Esta funcion se encarga de asignar un valor a la carta
+ * @param {*} card
+ * @returns valor de la carta
+ */
 const cardValue = (card) => {
 
   // Elimina el ultimo caracter de la carta, que es el tipo de carta
@@ -67,8 +82,20 @@ const cardValue = (card) => {
 
 }
 
+// Eventos
+btnRequestCard.addEventListener("click", () => {
+  
+  const card = takeCard();
+  
+  playerPoints = playerPoints + cardValue(card);
+  
+  playerScore.innerText = playerPoints;
+  
+  // Crear imagen de la carta
+
+})
+
+
 createDeck();
-const valor = cardValue(takeCard());
-console.log({valor});
 
 
